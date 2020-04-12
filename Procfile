@@ -1,0 +1,1 @@
+web: gunicorn dacprojects.wsgi --log-file -
