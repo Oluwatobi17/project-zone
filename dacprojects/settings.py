@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.core.mail import send_mail
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +26,8 @@ SECRET_KEY = 'mz0zo5ufy9bh=3@iz%@e_-deb_h=o(5d+2li=8o35izh=eb=48'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dacprojects.herokuapp.com']
+# ALLOWED_HOSTS = ['dacprojects.herokuapp.com']
+ALLOWED_HOSTS = ['projectzone.herokuapp.com']
 
 
 # Application definition
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+AUTH_USER_MODEL = 'index.User'
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -82,6 +86,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'dacprojects',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ganiu123456',
+#         'HOST': 'localhost',
+#         'PORT': '8000'
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -101,6 +116,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465 #587
+EMAIL_HOST_USER = 'ibdac2000@gmail.com'
+EMAIL_HOST_PASSWORD = 'ganiu123456'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -137,7 +168,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-# # # #  Add configuration for static files storage using whitenoise
+# # # # #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 

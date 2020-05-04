@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block content %}
+	<section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url(/static/images/big_image_1.jpg);">
+		<div class="container">
+			<div class="row align-items-center site-hero-inner justify-content-center">
+				<div class="col-md-8 text-center">
+
+					<div class="mb-5 element-animate">
+						<h1>Edit Project</h1>
+						<p><a href="{% url 'projects' user.username %}" class="btn btn-primary">View Projects</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- END section -->
+
+
+	<section class="site-section bg-light">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<form action="" method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="title">Project Title</label>
+								<input type="text" id="title" name="title" class="form-control " value="{{project.title}}">
+								<input type="hidden" name="user" value="{{user.id}}">
+							</div>
+							<div class="col-md-12 form-group">
+								<label for="short_desc">Short Description <i>(500 letters)</i></label>
+								<input type="text" id="short_desc" name="short_desc" class="form-control " value="{{project.short_desc}}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="picture">Project Image <i>(Not neccessary)</i></label>
+								<input type="file" id="picture" name="picture" class="form-control">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="full_desc">Write about the project </label>
+								<textarea name="full_desc" id="full_desc" class="form-control " cols="20" rows="2">{{project.full_desc}}</textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-group">
+								<input type="submit" value="Edit Project" class="btn btn-primary">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- END section -->
+<!-- 
+	 <section class="overflow">
+		<div class="container">
+			<div class="row justify-content-center align-items-center">
+				
+				
+				<div class="col-lg-7 order-lg-3 order-1 mb-lg-0 mb-5">
+					<img src="images/person_testimonial_1.jpg" alt="Image placeholder" class="img-md-fluid">
+				</div>
+				<div class="col-lg-1 order-lg-2"></div>
+				<div class="col-lg-4 order-lg-1 order-2 mb-lg-0 mb-5">
+					<blockquote class="testimonial">
+						&ldquo; Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt nihil ab cumque molestiae commodi. &rdquo;
+					</blockquote>
+					<p>&mdash; John Doe, Certified ReactJS Student</p>
+				</div>
+			</div>
+		</div>
+	</section> -->
+	<!-- END section -->
+{% endblock %}

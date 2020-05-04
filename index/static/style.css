@@ -1,0 +1,285 @@
+body{
+	color: white;
+	margin: 0px;
+	padding: 0px;
+	font-family: arial;
+	background: url('/static/img/background1.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+a{
+	color: white;
+}
+nav{  /* top nav */
+	background: navy;
+	margin-bottom: 10px;
+	height: 60px;
+	width: 100%;
+}
+.dropnavbut{
+	height: 50px;
+	width: 80px;
+	margin-right: 20px;
+}
+.nav{  /* Side nav */
+	float: left;
+	border: 1px solid navy;
+	border-radius: 5px;
+	width: 20%;
+	background: #191970;
+	padding-bottom: 100px;
+}
+.bodycontainer{
+	padding: 20px 10px;
+}
+.body{
+	width: 75%;
+	float: left;
+}
+.hide{
+	display: none;
+}
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.welcomebody{
+	text-align: center;
+	padding: 50px;
+}
+.welcomebody img{
+	width: 150px;
+	height: 190px;
+	border-radius: 50%;
+	border: 5px solid white;
+}
+.navview{
+	padding: 15px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.navlinks{
+	padding: 5px;
+}
+.navlinks a{
+	font-size: 13px;
+	font-weight: bold;
+	padding: 10px 12px;
+	text-decoration: none;
+	border-radius: 2px;
+	color: white;
+	display: block;
+	margin: 1px;
+	font-family: arial;
+}
+.navlinks a:hover{
+	background: #6495ed;
+}
+.active{
+	background: #6495ed;
+}
+.navview img{
+	width: 80%;
+	height: 70%;
+	border-radius: 4px;
+}
+.author{
+	max-width: 300px;
+	text-align: center;
+	margin: 10px auto;
+}
+.informative{
+	width: 100%;
+	padding: 15px;
+	margin: 5px auto;
+	border-radius: 4px;
+	text-align: left;
+	border: 1px solid #ebebeb;
+	box-sizing: border-box;
+}
+.projectcontainer{
+	width: 100%;
+	padding: 15px;
+	margin: 5px auto;
+	border-radius: 4px;
+	text-align: left;
+	box-sizing: border-box;
+}
+.informative p, .projectcontainer p{
+	margin-top: 5px;
+}
+.author a{
+	background: white;
+	text-decoration: none;
+	padding: 10px 25px;
+	color: navy;
+	font-weight: bold;
+	border-radius: 3px;
+}
+.what{
+	font-weight: bold;
+	float: left;
+	width: 20%;
+	margin-right: 20px;
+	font-size: 17px;
+}
+.details{
+	float: left;
+	width: 70%;
+	font-size: 16px;
+}
+.clr{
+	clear: both;
+}
+#project{
+	width: 90%;
+	height: 35%;
+}
+.projectimg{
+	text-align: center;
+	margin: 5px auto;
+}
+.swipeproject a{
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	background: navy;
+	padding: 20px;
+	text-decoration: none;
+	position: relative;
+}
+.next{
+	top: 200px;
+	right: -85%;
+	background: green;
+}
+.prev{
+	top: 200px;
+	left: 0%;
+}
+.date{
+	color: #ccc;
+	font-size: 11px;
+	float: right;
+}
+.commentsection{
+	padding: 10px;
+	box-sizing: border-box;
+}
+.comments{
+	width: 58%;
+	padding: 10px;
+	float: left;
+}
+.comment{
+	margin-bottom: 10px;
+}
+.writecomment{
+	width: 35%;
+	padding: 10px;
+	float: right;
+}
+.commentImg img{
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+}
+.commentImg{
+	width: 20%;
+	margin-right: 5px;
+}
+.commentDetails{
+	width: 100%;
+}
+.writecomment input[type='text']{
+	width: 100%;
+	height: 20px;
+	padding: 5px;
+	color: black;
+	background: white;
+	border: 1px solid #ccc;
+}
+.writecomment input[type='submit']{
+	padding: 10px 20px;
+	color: blue;
+	background: white;
+	border-radius: 3px;
+	border: 0;
+	float: right;
+	font-weight: bold;
+	margin-top: 10px;
+	cursor: pointer;
+}
+.projectindex{
+	font-size: 13px;
+	color: #ccc;
+	top: 100px;
+	right: -85%;
+}
+.navbutton{
+	width: 30px;
+	cursor: pointer;
+	height: 30px;
+	margin: 20px;
+	display: none;
+}
+.dropnavbut{
+	width: 30px;
+	height: 30px;
+	margin: 10px;
+	cursor: pointer;
+}
+.navtag{
+	padding: 10px;
+	margin: 10px 15px;
+}
+.navtag a{
+	text-decoration: none;
+	color: white;
+	font-family: arial;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 30px;
+}
+
+@media (max-width: 414px){
+	.navbutton{
+		display: block;
+	}
+	.projectcontainer{
+		padding: 0px 15px;
+	}
+	.nav{
+		display: none;
+		width: 45%;
+		position: fixed;
+	}
+	.body{
+		width: 100%;
+		clear: both;
+	}
+	.next{
+		top: 150px;
+		right: -70%;
+		background: green;
+	}
+	.prev{
+		top: 150px;
+		left: -5%;
+	}
+	.comments, .writecomment{
+		clear: both;
+		width: 100%;
+	}
+	.welcomebody{
+		padding: 5px;
+	}
+	.informative{
+		border: 0;
+	}
+	.what{
+		font-size: 15px;
+	}
+}
