@@ -1,4 +1,6 @@
 {% extends 'layout.html' %}
+
+{% load dactags %}
 {% load static %}
 
 {% block content %}
@@ -36,11 +38,11 @@
 
 					<div class="pt-5">
 						{% with project.view_set.count as viewnum %}
-						<p>{{viewnum}} view{{viewnum|pluralize}}</p>
+						<p>{% commalizer viewnum %} view{{viewnum | pluralize}}</p>
 						{% endwith %}
 
 						{% with project.comment_set.count as commentnum %}
-						<h3 class="mb-5">{{ commentnum }} Comment{{ commentnum|pluralize }}</h3>
+						<h3 class="mb-5">{% commalizer commentnum %} Comment{{ commentnum|pluralize }}</h3>
 						{% endwith %}
 
 						{% if project.comment_set.all %}

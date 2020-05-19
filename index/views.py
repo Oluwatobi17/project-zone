@@ -3,9 +3,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as login_user
 from django.contrib.auth import logout as logout_user
 from django.contrib import messages
-from .forms import UserForm,ProjectPicForm,CreateProjectForm
+from .forms import UserForm,ProjectPicForm,CreateProjectForm,EditResumeForm
 from .forms import EditProjectForm, ContactForm,EditPicsForm,EditProfileForm
-from .models import User, Project, Comment, View
+from .models import User, Project, Comment, View, UsedFiles
 
 import random
 from django.core.mail import send_mail, EmailMessage
@@ -146,24 +146,35 @@ def editprofile(request):
 				
 				pictureForm = EditPicsForm(request.POST,request.FILES)
 				if pictureForm.is_valid():
-					img_type = str(request.FILES['profilePics']).split('.')[-1].lower()
-					resume_type = str(request.FILES['resume']).split('.')[-1].lower()
+					img_type = str(pictureForm.cleaned_data['profilePics']).split('.')[-1].lower()
 					
-					if (not resume_type=='pdf') and (img_type not in IMAGE_FILE_TYPES):
-						messages.error(request, 'Image must be a jpeg, png or jpg file while resume should be in pdf file format')
-						print(resume_type, img_type)
-					else:
+					if img_type not in IMAGE_FILE_TYPES:
+						messages.error(request, 'Image must be a jpeg, png or jpg file')
+						return redirect(editprofile)
+					
+					if request.FILES.get('profilePics', False):
+						UsedFiles.objects.create(filename=user.profilePics.url)
 						user.profilePics = request.FILES['profilePics']
-						user.resume = request.FILES['resume']
-						user.save()
-						print('He want to upload')
+						# print('New file:', pictureForm.cleaned_data['profilePics'])
+				# Editing Resume
+				editresume = EditResumeForm(request.POST, request.FILES)
+				if editresume.is_valid():
+					resume_type = str(editresume.cleaned_data['resume']).split('.')[-1].lower()
+					if not resume_type=='pdf':
+						messages.error(request, 'Resume should be in pdf file format')
+						return redirect(editprofile)
 
-					messages.success(request ,'Your profile has been updated, you are now ready to share your portfolio')
-					return redirect(profile,request.user.username)
-				elif user.profilePics:
-					user.save()
-					return redirect(profile, request.user.username)
-					
+					print('Resume url: ',user.resume.url)
+					if user.resume.url:
+						UsedFiles.objects.create(filename=user.resume.url)
+					user.resume = editresume.cleaned_data['resume']
+					print('New resume: ', editresume.cleaned_data['resume'])
+				
+				user.save()
+				messages.success(request ,'Your profile has been updated, you are now ready to share your portfolio')
+				
+				return redirect(profile, request.user.username)
+
 			messages.error(request, 'Please fill all fields')
 			return redirect(editprofile)
 
@@ -242,7 +253,10 @@ def editproject(request, id):
 						edit.id = id
 						edit.user = project.user
 						edit.pub_date = project.pub_date
-						if request.FILES:
+						if request.FILES.get('picture', False):
+							if not project.picture.url == '/static/media/defaultproject.jpg':
+								UsedFiles.objects.create(filename=project.picture.url)
+								print('There was a change')
 							edit.picture = request.FILES['picture']
 						else:
 							edit.picture = project.picture

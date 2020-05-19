@@ -26,7 +26,7 @@ SECRET_KEY = 'mz0zo5ufy9bh=3@iz%@e_-deb_h=o(5d+2li=8o35izh=eb=48'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['dacprojects.herokuapp.com']
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['projectzone.herokuapp.com']
 
 

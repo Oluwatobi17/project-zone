@@ -41,11 +41,19 @@ class Comment(models.Model):
 
 
 	def __str__(self):
-		return self.author.first_name, '-', self.author.last_name
+		return self.comment
+
+# For getting projects with the highest number of comment
+
+# from django.db.models import Count
+# Project.objects.annotate(total_comments=Count('comment')).order_by('-total_comments')
+
 
 class View(models.Model):
 	project = models.ForeignKey(Project, on_delete=models.CASCADE)
 	user = models.CharField(max_length=100)
+
+
 
 class Contact(models.Model):
 	name = models.CharField(max_length=500)
@@ -56,9 +64,8 @@ class Contact(models.Model):
 	def __str__(self):
 		return self.name
 
-# class Notification(models.Model):
-# 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-# 	message = models.CharField(max_length=500)
-# 	slug = models.SlugField(max_length=200)
-# 	active = models.BooleanField(default=True)
-# 	pub_date = models.DateTimeField(auto_now_add=True)
+class UsedFiles(models.Model):
+	filename = models.TextField()
+
+	def __str__(self):
+		return self.filename

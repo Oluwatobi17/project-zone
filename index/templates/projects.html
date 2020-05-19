@@ -1,6 +1,8 @@
 
 {% extends 'layout.html' %}
 
+
+{% load dactags %}
 {% load static %}
 
 {% block content %}
@@ -37,7 +39,7 @@
 							<a href="{% url 'project' project.id %}" class="blog-entry">
 								<img src="{{ project.picture.url }}" alt="Image placeholder">
 							<h2>{{ project.title }}</h2>
-							<p>{{ project.pub_date|date:"F j Y"}} &bull; {{project.view_set.count}} view{{project.view_set.count|pluralize}}</p>
+							<p>{{ project.pub_date|date:"F j Y"}} &bull; {% commalizer project.view_set.count %} view{{project.view_set.count|pluralize}}</p>
 							</a>
 						</div>
 					{% endfor %}

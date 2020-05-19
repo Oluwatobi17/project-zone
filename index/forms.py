@@ -16,11 +16,18 @@ class EditProfileForm(forms.ModelForm):
 		fields = ['first_name','last_name','phonenum','email','nationality','about','job_description','job_title','contact_address']
 
 
+class EditResumeForm(forms.ModelForm):
+
+	class Meta:
+		model = User
+		fields = ['resume']
+
 class EditPicsForm(forms.ModelForm):
 
 	class Meta:
 		model = User
-		fields = ['resume','profilePics']
+		fields = ['profilePics']
+
 
 class ProjectPicForm(forms.ModelForm):
 
