@@ -49,4 +49,10 @@ ul.messagelist li.error {
     .site-hero h1 {
         font-size: 40px;
     }
+    .episodes .episode-number{
+        line-height: 37px;
+        width: 39px;
+        height: 40px;
+        position: none;
+    }
 }
